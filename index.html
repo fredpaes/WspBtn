@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wsp Btn</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+
+
+<!-- BOTON WHATSAPP -->
+<wsp_float_container>
+  <span id="wsp_float_btn">
+    <i class="fa fa-whatsapp wsp_float_icon"></i>
+    <i class="fa fa-close wsp_float_icon hidden"></i>
+  </span>
+  <section id="wsp_float_box" class="col col-sm-3 col-md-3 col-xs-10 hidden">
+    <section id="test">Chatea con nosotros</section>
+    <section><textarea name="wsp_msg_txt" id="wsp_msg_txt" rows="12" placeholder="Deja tu mensajillo"></textarea></section>
+    <section><a id="send_wsp" target="_blank" href="https://api.whatsapp.com/send?phone=51965300377">Enviar <i class="fa fa-chevron-right"></i></a></section>
+  </section>
+</wsp_float_container>
+
+<style>
+  @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css";
+  wsp_float_container {
+    color: #FFF;
+    text-align: center;
+  }
+  .hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+  .wsp_float_icon {
+    margin-top:16px;
+  }
+  #wsp_msg_txt {
+    border: none;
+    outline: none;
+    resize: none;
+    height: 100%;
+    width: 100%;
+    /* border-radius: 0 !important; */
+    color: #000000;
+    /* padding: 20px 40px !important; */
+    /* box-sizing: border-box;
+    transition: none; */
+  }
+  #wsp_float_btn {
+    cursor: pointer;
+    position: fixed;
+    opacity: 1;
+    width: 60px;
+    height: 60px;
+    bottom: 10px;
+    right: 40px;
+    background-color: #25D366;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+  }
+  #wsp_float_box {
+    /* border: 1px solid rgba(0, 128, 0, 0.616); */
+    opacity: 1;
+    position: fixed;
+    right: 40px;
+    bottom: 80px;
+    height: 365px;
+    z-index: 99;
+    background: #25D366;
+    padding: 0;
+    border-radius: 5px;
+    color: #FFF;
+  }
+  #wsp_float_box section:nth-child(odd) {
+    padding: 10px 0px;
+  }
+  #wsp_float_box section:nth-child(2n) textarea {
+    padding: 15px;
+    border: 1px solid #25D366;
+  }
+  #send_wsp {
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+  }
+  @media (max-width: 767px) {
+    #wsp_float_box, #wsp_float_btn {
+      right: 15px;
+    }
+  }
+</style>
+
+<script>
+  let wsp_btn = document.getElementById('wsp_float_btn'),
+      wsp_icon = document.querySelectorAll('.wsp_float_icon'),
+      wsp_box = document.getElementById('wsp_float_box');
+
+  wsp_btn.addEventListener('click', () => {
+    for (let icon of wsp_icon) {
+      icon.classList.toggle('hidden');
+    }
+    wsp_box.classList.toggle('hidden');
+  });
+
+  let wsp_send = document.getElementById('send_wsp'),
+      wsp_txt = document.getElementById('wsp_msg_txt');
+
+  let test = document.getElementById('test');
+  wsp_txt.addEventListener('keyup', () => {
+    wsp_send.setAttribute('href', `https://api.whatsapp.com/send?phone=51965300377&text=${wsp_txt.value}`)
+  })
+</script>
+
+
+  </body>
+</html>
